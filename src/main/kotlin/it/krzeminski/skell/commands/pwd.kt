@@ -1,4 +1,4 @@
-package skell
+package it.krzeminski.skell.commands
 
 import java.io.File
 
