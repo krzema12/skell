@@ -12,9 +12,14 @@ repositories {
     mavenCentral()
 }
 
+val test by tasks.getting(Test::class) {
+    useJUnitPlatform { }
+}
+
 dependencies {
     compile(kotlin("stdlib-jdk8"))
-    testCompile("junit", "junit", "4.12")
+
+    testImplementation("io.kotlintest:kotlintest-runner-junit5:3.2.1")
 }
 
 configure<JavaPluginConvention> {
