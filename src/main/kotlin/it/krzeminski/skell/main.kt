@@ -5,4 +5,4 @@ fun main(args: Array<String>) =
 
 fun command() =
         ls . grep("out")
-//        pwd
+//        sequenceOf(pwd)
