@@ -1,6 +1,7 @@
 package it.krzeminski.skell.commands
 
+import it.krzeminski.skell.internal.CurrentWorkingDirectoryState
 import java.io.File
 
 val pwd: File
-    get() = File("").absoluteFile
+    get() = CurrentWorkingDirectoryState.currentDirectory.canonicalFile

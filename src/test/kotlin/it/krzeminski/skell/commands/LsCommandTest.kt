@@ -13,4 +13,13 @@ class LsCommandTest : StringSpec({
 
         allFiles.map { file -> file.name } should contain("build.gradle.kts")
     }
+
+    "current directory set with 'cd' is respected" {
+        val allFilesBeforeDirectoryChange = ls
+        cd("gradle/wrapper")
+        val allFilesAfterDirectoryChange = ls
+
+        allFilesBeforeDirectoryChange.map { file -> file.name } should contain("build.gradle.kts")
+        allFilesAfterDirectoryChange.map { file -> file.name } should contain("gradle-wrapper.jar")
+    }
 })
