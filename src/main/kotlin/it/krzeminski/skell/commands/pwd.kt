@@ -1,7 +1,7 @@
 package it.krzeminski.skell.commands
 
-import it.krzeminski.skell.internal.CurrentWorkingDirectoryState
-import java.io.File
+import it.krzeminski.skell.SkellContext
+import java.nio.file.Path
 
-val pwd: File
-    get() = CurrentWorkingDirectoryState.currentDirectory.canonicalFile
+val SkellContext.pwd: Path
+    get() = currentPath.toFile().canonicalFile.toPath()

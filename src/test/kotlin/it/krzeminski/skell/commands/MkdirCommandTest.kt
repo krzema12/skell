@@ -6,19 +6,20 @@ import io.kotlintest.matchers.string.shouldEndWith
 import io.kotlintest.should
 import io.kotlintest.shouldNot
 import io.kotlintest.specs.StringSpec
+import it.krzeminski.skell.skellContext
 import java.nio.file.Files
 
 class MkdirCommandTest : StringSpec({
-    "creates a new directory" {
+    "creates a new directory" { skellContext {
         val tempDirectoryPath = Files.createTempDirectory("unit-tests")
-        cd(tempDirectoryPath.toAbsolutePath().toString())
+        cd(tempDirectoryPath.toAbsolutePath().toString()) {
+            pwd.toString() shouldContain "unit-tests"
 
-        pwd.absolutePath shouldContain "unit-tests"
+            ls.map { it.name } shouldNot contain("newDirectory")
 
-        ls.map { it.name } shouldNot contain("newDirectory")
+            mkdir("newDirectory")
 
-        mkdir("newDirectory")
-
-        ls.map { it.name } should contain("newDirectory")
-    }
+            ls.map { it.name } should contain("newDirectory")
+        }
+    } }
 })

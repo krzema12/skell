@@ -8,13 +8,20 @@ import kotlin.random.Random
 
 class IntegrationTests : StringSpec({
     "creating a file in a newly created directory" {
-        val randomDirectoryName = "build/newDirectory-${Random.nextInt()}"
+        var wasCdBodyExecuted = false
 
-        mkdir(randomDirectoryName)
-        cd(randomDirectoryName)
-        touch("newFile")
+        skellContext {
+            val randomDirectoryName = "build/newDirectory-${Random.nextInt()}"
 
-        pwd.absolutePath shouldEndWith randomDirectoryName
-        ls.grep("newFile").count() shouldBe 1
+            mkdir(randomDirectoryName)
+            cd(randomDirectoryName) {
+                touch("newFile")
+                pwd.toString() shouldEndWith randomDirectoryName
+                ls.grep("newFile").count() shouldBe 1
+                wasCdBodyExecuted = true
+            }
+        }
+
+        wasCdBodyExecuted shouldBe true
     }
 })

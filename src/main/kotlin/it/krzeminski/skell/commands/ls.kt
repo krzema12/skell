@@ -1,7 +1,7 @@
 package it.krzeminski.skell.commands
 
-import it.krzeminski.skell.internal.CurrentWorkingDirectoryState
+import it.krzeminski.skell.SkellContext
 import java.io.File
 
-val ls: Iterable<File>
-    get() = CurrentWorkingDirectoryState.currentDirectory.listFiles().toList()
+val SkellContext.ls: Iterable<File>
+    get() = currentPath.toFile().listFiles().toList()

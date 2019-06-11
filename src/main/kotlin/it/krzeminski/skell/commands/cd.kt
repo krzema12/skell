@@ -1,8 +1,8 @@
 package it.krzeminski.skell.commands
 
-import it.krzeminski.skell.internal.CurrentWorkingDirectoryState
+import it.krzeminski.skell.SkellContext
 
-fun cd(directoryName: String) {
-    CurrentWorkingDirectoryState.currentDirectory =
-        CurrentWorkingDirectoryState.currentDirectory.resolve(directoryName)
+fun SkellContext.cd(path: String, block: SkellContext.() -> Unit) {
+    val newContext = this.copy(currentPath = currentPath.resolve(path))
+    newContext.block()
 }

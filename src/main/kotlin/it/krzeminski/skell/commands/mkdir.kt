@@ -1,7 +1,6 @@
 package it.krzeminski.skell.commands
 
-import it.krzeminski.skell.internal.CurrentWorkingDirectoryState
+import it.krzeminski.skell.SkellContext
 
-fun mkdir(directoryName: String) {
-    CurrentWorkingDirectoryState.currentDirectory.resolve(directoryName).mkdir()
-}
+fun SkellContext.mkdir(directoryName: String) =
+    currentPath.resolve(directoryName).toFile().mkdir()

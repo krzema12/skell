@@ -1,7 +1,6 @@
 package it.krzeminski.skell.commands
 
-import it.krzeminski.skell.internal.CurrentWorkingDirectoryState
+import it.krzeminski.skell.SkellContext
 
-fun touch(fileName: String) {
-    CurrentWorkingDirectoryState.currentDirectory.resolve(fileName).createNewFile()
-}
+fun SkellContext.touch(fileName: String) =
+    currentPath.resolve(fileName).toFile().createNewFile()
