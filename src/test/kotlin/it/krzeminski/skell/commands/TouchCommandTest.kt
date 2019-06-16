@@ -11,11 +11,11 @@ class TouchCommandTest : StringSpec({
     "creates a new directory" { skellContext {
         val tempDirectoryPath = Files.createTempDirectory("unit-tests")
         cd(tempDirectoryPath.toAbsolutePath().toString()) {
-            ls.map { it.name } shouldNot contain("newFile")
+            ls().map { it.name } shouldNot contain("newFile")
 
             touch("newFile")
 
-            ls.map { it.name } should contain("newFile")
+            ls().map { it.name } should contain("newFile")
         }
     } }
 })

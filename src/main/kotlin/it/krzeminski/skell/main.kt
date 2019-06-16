@@ -9,6 +9,6 @@ fun main(args: Array<String>) = skellContext {
 }
 
 fun SkellContext.command() =
-    ls . grep("out")
+    ls() . grep("out")
 //        sequenceOf("Current user name: $USER, and its home directory is: $HOME")
 //        sequenceOf(pwd)

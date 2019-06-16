@@ -15,11 +15,11 @@ class MkdirCommandTest : StringSpec({
         cd(tempDirectoryPath.toAbsolutePath().toString()) {
             pwd.toString() shouldContain "unit-tests"
 
-            ls.map { it.name } shouldNot contain("newDirectory")
+            ls().map { it.name } shouldNot contain("newDirectory")
 
             mkdir("newDirectory")
 
-            ls.map { it.name } should contain("newDirectory")
+            ls().map { it.name } should contain("newDirectory")
         }
     } }
 })
