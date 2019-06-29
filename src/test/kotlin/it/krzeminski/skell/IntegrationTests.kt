@@ -17,6 +17,8 @@ class IntegrationTests : StringSpec({
             touch("newFile")
             pwd.toString() shouldEndWith randomDirectoryName
             ls().grep("newFile").count() shouldBe 1
+            rm("newFile")
+            ls().grep("newFile").count() shouldBe 0
             wasCdBodyExecuted = true
         }
 
