@@ -10,16 +10,14 @@ class IntegrationTests : StringSpec({
     "creating a file in a newly created directory" {
         var wasCdBodyExecuted = false
 
-        skellContext {
-            val randomDirectoryName = "build/newDirectory-${Random.nextInt()}"
+        val randomDirectoryName = "build/newDirectory-${Random.nextInt()}"
 
-            mkdir(randomDirectoryName)
-            cd(randomDirectoryName) {
-                touch("newFile")
-                pwd.toString() shouldEndWith randomDirectoryName
-                ls().grep("newFile").count() shouldBe 1
-                wasCdBodyExecuted = true
-            }
+        mkdir(randomDirectoryName)
+        cd(randomDirectoryName) {
+            touch("newFile")
+            pwd.toString() shouldEndWith randomDirectoryName
+            ls().grep("newFile").count() shouldBe 1
+            wasCdBodyExecuted = true
         }
 
         wasCdBodyExecuted shouldBe true

@@ -1,9 +1,12 @@
 package it.krzeminski.skell.commands
 
 import it.krzeminski.skell.SkellContext
+import it.krzeminski.skell.defaultContext
 import java.io.File
 
 val SkellContext.ls: LsCommand get() = defaults(this)
+
+val ls: LsCommand get() = defaultContext.ls
 
 operator fun LsCommand.invoke(path: String = "."): Iterable<File> {
     val initialList = skellContext.currentPath.resolve(path).toFile().listFiles().toList()

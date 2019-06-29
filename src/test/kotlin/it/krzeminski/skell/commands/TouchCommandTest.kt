@@ -4,11 +4,10 @@ import io.kotlintest.matchers.collections.contain
 import io.kotlintest.should
 import io.kotlintest.shouldNot
 import io.kotlintest.specs.StringSpec
-import it.krzeminski.skell.skellContext
 import java.nio.file.Files
 
 class TouchCommandTest : StringSpec({
-    "creates a new directory" { skellContext {
+    "creates a new directory" {
         val tempDirectoryPath = Files.createTempDirectory("unit-tests")
         cd(tempDirectoryPath.toAbsolutePath().toString()) {
             ls().map { it.name } shouldNot contain("newFile")
@@ -17,5 +16,5 @@ class TouchCommandTest : StringSpec({
 
             ls().map { it.name } should contain("newFile")
         }
-    } }
+    }
 })

@@ -3,10 +3,9 @@ package it.krzeminski.skell.commands
 import io.kotlintest.matchers.string.shouldEndWith
 import io.kotlintest.matchers.string.shouldNotEndWith
 import io.kotlintest.specs.StringSpec
-import it.krzeminski.skell.skellContext
 
 class PwdCommandTest : StringSpec({
-    "current directory set with 'cd' is respected" { skellContext {
+    "current directory set with 'cd' is respected" {
         val pwdBeforeDirectoryChange = pwd
         cd("src") {
             val pwdAfterDirectoryChange = pwd
@@ -14,5 +13,5 @@ class PwdCommandTest : StringSpec({
             pwdBeforeDirectoryChange.toString() shouldNotEndWith "src"
             pwdAfterDirectoryChange.toString() shouldEndWith "src"
         }
-    } }
+    }
 })

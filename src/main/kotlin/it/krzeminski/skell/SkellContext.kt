@@ -5,5 +5,4 @@ import java.nio.file.Paths
 
 data class SkellContext(val currentPath: Path)
 
-fun skellContext(block: SkellContext.() -> Unit) =
-    SkellContext(currentPath = Paths.get(".")).block()
+val defaultContext = SkellContext(currentPath = Paths.get("."))
