@@ -4,7 +4,7 @@ import it.krzeminski.skell.SkellContext
 import java.io.File
 import java.io.PrintWriter
 
-infix fun Iterable<String>.to(file: File) {
+infix fun Iterable<String>.writeTo(file: File) {
     val writer = PrintWriter(file, "UTF-8")
     this.forEach { line ->
         writer.println(line)
