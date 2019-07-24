@@ -1,5 +1,6 @@
 package it.krzeminski.skell
 
+import io.kotlintest.matchers.collections.shouldContain
 import io.kotlintest.matchers.string.shouldEndWith
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
@@ -19,6 +20,13 @@ class IntegrationTests : StringSpec({
             ls().grep("newFile").count() shouldBe 1
             rm("newFile")
             ls().grep("newFile").count() shouldBe 0
+
+            // Writing and reading from file.
+            touch("anotherNewFile")
+            ls().map { it.name } writeTo file("test-file")
+            val readTestFile = readFrom(file("test-file"))
+            readTestFile.toList() shouldContain "anotherNewFile"
+
             wasCdBodyExecuted = true
         }
 
