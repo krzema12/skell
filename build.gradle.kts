@@ -20,6 +20,7 @@ dependencies {
     compile(kotlin("stdlib-jdk8"))
 
     testImplementation("io.kotlintest:kotlintest-runner-junit5:3.2.1")
+    testImplementation("com.github.ajalt:clikt:2.3.0")
 }
 
 configure<JavaPluginConvention> {
